@@ -1,0 +1,19 @@
+<app-apartment-count-preview
+  [city]="city"
+  [showLocation]="showLocation"
+  [apartmentCount]="apartments.length"
+  [statisticByCity]="statisticsByCity"
+></app-apartment-count-preview>
+
+<div class="container">
+  <app-apartment-preview
+    *ngFor="let apartment of apartments"
+    [apartment]="apartment"
+    [isFavourite]="isFavourite(apartment)"
+  >
+  </app-apartment-preview>
+</div>
+
+<div class="allDataLoaded" *ngIf="allDataLoaded && apartments.length">
+  {{ 'i18n.core.vocabulary.allDataLoaded.text' | translate }}
+</div>

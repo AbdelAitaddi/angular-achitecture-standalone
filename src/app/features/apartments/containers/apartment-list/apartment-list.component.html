@@ -1,0 +1,46 @@
+<ng-container *ngIf="viewModel$ | async as vm">
+  <div
+    class="container"
+    infiniteScroll
+    cdkScrollable
+    #infiniteScrollContainer
+    [fromRoot]="true"
+    [infiniteScrollContainer]="infiniteScrollContainer"
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="200"
+    [immediateCheck]="true"
+    [scrollWindow]="false"
+    [alwaysCallback]="true"
+    [infiniteScrollDisabled]="vm.allDataLoaded"
+    (scrolled)="onScrollDown()"
+  >
+    <app-apartment-filter
+      [boroughs]="vm.boroughs"
+      [cities]="vm.cities"
+      [selectedCity]="vm.selectedCity"
+      [selectedBorough]="vm.selectedBorough"
+      (boroughSelected)="onBoroughSelected($event)"
+      (citySelected)="onCitySelected($event)"
+    >
+    </app-apartment-filter>
+
+    <app-apartment-preview-list
+      class="apartment-preview"
+      [showLocation]="true"
+      [city]="vm.selectedCity"
+      [statistics]="vm.statistics"
+      [allDataLoaded]="vm.allDataLoaded"
+      [favouritesIds]="vm.favouritesIds"
+      [apartments]="vm.apartmentByCity | byBoroughs : vm.selectedBorough"
+    >
+    </app-apartment-preview-list>
+
+    <div *ngIf="vm.loaded && !vm.apartmentByCity.length" class="no-results">
+      <strong>{{ 'i18n.apartments.listPage.content.searchNotMatch.text' | translate }}</strong>
+    </div>
+
+    <div *ngIf="!vm.loading && !vm.loaded" class="loading-error">
+      <strong>{{ 'i18n.core.errorMessage.errorRetrievingData' | translate }}</strong>
+    </div>
+  </div>
+</ng-container>

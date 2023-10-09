@@ -1,0 +1,12 @@
+<a
+  mat-list-item
+  (click)="$event.stopPropagation(); toggle.emit()"
+  [routerLink]="routerLink"
+  [routerLinkActive]="'active'"
+  [routerLinkActiveOptions]="{ exact: true }"
+  data-test-id="nav-item-link"
+>
+  <mat-icon matListItemIcon class="icon" [svgIcon]="icon"></mat-icon>
+  <span mat-line matListItemTitle data-test-id="nav-item-name">{{ name | translate }}</span>
+  <span mat-line matListItemLine class="hint" data-test-id="nav-item-hint">{{ hint | translate }}</span>
+</a>

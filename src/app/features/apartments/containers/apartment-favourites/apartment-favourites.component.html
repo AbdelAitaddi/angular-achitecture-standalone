@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>{{ 'i18n.apartments.favouritePage.headline.text' | translate }}</h1>
+
+  <ng-container *ngIf="viewModel$ | async as vm">
+    <app-apartment-preview-list
+      class="apartment-preview"
+      [favouritesIds]="vm.favouritesIds"
+      [apartments]="vm.favouritesApartments"
+    >
+    </app-apartment-preview-list>
+
+    <div *ngIf="!vm.favouritesApartments.length" class="no-results">
+      {{ 'i18n.apartments.favouritePage.content.NoItemSelected.text' | translate }}
+    </div>
+  </ng-container>
+</div>
