@@ -1,0 +1,11 @@
+<div class="apartment-count">
+  {{ apartments.length  }} Apartments
+</div>
+
+<div class="container">
+  <app-apartment-preview *ngFor="let apartment of apartments"
+                         [apartment]="apartment"
+                         [favourites]="favourites">
+  </app-apartment-preview>
+</div>
+

@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="app-name" routerLink="/">ApartmentSearch</div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="isBiggerScreen" [opened]="opened" [fixedInViewport]="true" [autoFocus]="false">
+    <div class="sidenav-title">
+      <mat-icon [svgIcon]="locationCityIcon"></mat-icon>
+      <h3>ApartmentSearch</h3>
+    </div>
+
+    <mat-nav-list>
+      <app-nav-item
+        *ngFor="let nav of navList"
+        [routerLink]="nav.route"
+        [icon]="nav.icon"
+        [name]="nav.name"
+        [hint]="nav.hint"
+        (toggle)="sidenav.toggle()"
+      >
+      </app-nav-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div *ngIf="(loading$ | async) === true" class="loading-indicator">
+      <mat-spinner mode="indeterminate"></mat-spinner>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

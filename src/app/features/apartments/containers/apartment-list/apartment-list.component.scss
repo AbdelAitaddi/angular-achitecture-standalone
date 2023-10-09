@@ -1,0 +1,16 @@
+@use "../../../../../styles/mixins/layout";
+@use "../../../../../styles/base/sizes";
+
+.container {
+  width: 100%;
+  @include layout.flex(column, initial, initial, initial);
+}
+
+.apartment-preview {
+  @include layout.flex(column, initial, initial, initial);
+}
+
+.no-results,
+.loading-error {
+  margin: sizes.$extra-large auto;
+}

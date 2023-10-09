@@ -1,0 +1,5 @@
+<a mat-list-item (click)="toggle.emit()" [routerLink]="routerLink" [routerLinkActive]="'active'">
+  <mat-icon matListItemIcon class="icon" [svgIcon]="icon"></mat-icon>
+  <span mat-line matListItemTitle>{{ name }}</span>
+  <span mat-line matListItemLine class="hint">{{ hint }}</span>
+</a>

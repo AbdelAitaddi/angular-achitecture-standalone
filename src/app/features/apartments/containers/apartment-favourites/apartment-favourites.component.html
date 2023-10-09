@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Your favourites apartments</h1>
+
+  <ng-container *ngIf="viewModel$ | async as vm">
+    <app-apartment-preview-list
+      class="apartment-preview"
+      [favourites]="vm.favourites"
+      [apartments]="vm.favouritesApartments"
+    >
+    </app-apartment-preview-list>
+
+    <div *ngIf="vm.loaded && !vm.favouritesApartments.length" class="no-results">
+      <strong>No item selected</strong>
+    </div>
+
+    <div *ngIf="!vm.loading && !vm.loaded" class="loading-error">
+      <strong>An error occurred while loading data</strong>
+    </div>
+  </ng-container>
+</div>

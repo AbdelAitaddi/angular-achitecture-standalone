@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>Apartment search portal</mat-card-title>
+  <mat-card-content>
+    <div>
+      <h4>Description</h4>
+      <mat-list>
+        <p>
+          This application is implemented with Angular and own rxjs State management. Design was made with Angular
+          material, the application offers:
+        </p>
+        <mat-list-item>- list of apartments.</mat-list-item>
+        <mat-list-item>- search apartment by city</mat-list-item>
+        <mat-list-item>- filter apartment by borough.</mat-list-item>
+        <mat-list-item>- read more detail about a apartment.</mat-list-item>
+        <mat-list-item>- save apartment in state management store as favourite.</mat-list-item>
+        <mat-list-item>- highlight saved apartments.</mat-list-item>
+        <mat-list-item>- show list of saved apartments.</mat-list-item>
+      </mat-list>
+    </div>
+
+    <div>
+      <h4>Purpose</h4>
+      <mat-list>
+        <p>This trial consists of writing a simple angular app:</p>
+        <mat-list-item><span matListItemTitle> - full reactive.</span></mat-list-item>
+        <mat-list-item>- Component-First architecture (standalone)</mat-list-item>
+        <mat-list-item>- Smart und Dumb Components.</mat-list-item>
+        <mat-list-item>- using own rxjs store(state Management).</mat-list-item>
+        <mat-list-item>- Design was made with Angular material</mat-list-item>
+      </mat-list>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [routerLink]="apartmentListRoute">find a apartment</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,12 @@
+<ng-container *ngIf="viewModel$ | async as vm">
+  <app-apartment-item
+    class="container"
+    *ngIf="vm.apartment"
+    [apartment]="vm.apartment"
+    [selected]="vm.selected"
+    (save)="onSave($event)"
+    (remove)="onRemove($event)"
+    (back)="onBack()"
+  >
+  </app-apartment-item>
+</ng-container>
