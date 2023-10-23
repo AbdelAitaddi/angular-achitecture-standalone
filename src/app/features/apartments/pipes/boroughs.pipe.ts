@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 // models
-import { All_Cities, Apartment } from '../../features/apartments/models';
+import { Apartment } from '../models';
+
+// config
+import { All_Cities } from '../config';
 
 @Pipe({
   name: 'byBoroughs',

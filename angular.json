@@ -28,7 +28,15 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./src/assets/icons",
+                "output": "./assets/icons"
+              }
+            ],
             "styles": ["src/styles.scss"],
             "scripts": []
           },
@@ -46,7 +54,22 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": {
+                "hidden": true,
+                "scripts": true,
+                "styles": false
+              },
+              "extractLicenses": true,
+              "buildOptimizer": true
             },
             "development": {
               "buildOptimizer": false,
@@ -84,17 +107,6 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
           }
         }
       }

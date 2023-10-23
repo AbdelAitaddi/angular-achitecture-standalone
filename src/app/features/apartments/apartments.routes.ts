@@ -5,43 +5,25 @@ import { apartmentExistsGuards, apartmentsGuard } from './guard';
 
 const apartmentsRoutes: Routes = [
   {
-    path: 'list',
-    title: 'Apartment list',
+    path: '',
+    title: 'i18n.core.pageTitle.apartments',
     canActivate: [apartmentsGuard],
-    children: [
-      {
-        path: '',
-        loadComponent: () =>
-          import('./containers/apartment-list/apartment-list.component').then((cmp) => cmp.ApartmentListComponent),
-      },
-      {
-        path: ':cityId',
-        loadComponent: () =>
-          import('./containers/apartment-list/apartment-list.component').then((cmp) => cmp.ApartmentListComponent),
-      },
-    ],
+    loadComponent: () =>
+      import('./containers/apartment-list/apartment-list.component').then((cmp) => cmp.ApartmentListComponent),
   },
   {
     path: 'detail/:apartmentId',
-    title: 'Apartment detail',
+    title: 'i18n.core.pageTitle.apartmentDetail',
     canActivate: [apartmentExistsGuards],
     loadComponent: () =>
       import('./containers/apartment-detail/apartment-detail.component').then((cmp) => cmp.ApartmentDetailComponent),
   },
   {
     path: 'favourites',
-    title: 'Favourites',
-    canActivate: [apartmentsGuard],
+    title: 'i18n.core.pageTitle.favourites',
     loadComponent: () =>
       import('./containers/apartment-favourites/apartment-favourites.component').then(
         (cmp) => cmp.ApartmentFavouritesComponent
-      ),
-  },
-  {
-    path: '**',
-    loadComponent: () =>
-      import('./../../core/containers/page-not-found/page-not-found.component').then(
-        (cmp) => cmp.PageNotFoundComponent
       ),
   },
 ];

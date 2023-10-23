@@ -1,0 +1,14 @@
+<div class="apartment-count">
+  <ng-container *ngIf="!showLocation && apartmentCount">
+    {{ apartmentCount }} {{ 'i18n.apartments.listPage.headline.text' | translate }}
+  </ng-container>
+
+  <ng-container *ngIf="showLocation">
+    {{ apartmentCount }}
+    <ng-container *ngIf="apartmentCount !== statisticByCity">{{
+      'i18n.core.vocabulary.of.text' | translate : { count: statisticByCity }
+    }}</ng-container>
+    {{ 'i18n.apartments.listPage.headline.text' | translate }} {{ 'i18n.core.vocabulary.in.text' | translate }}
+    {{ (isCity ? city : ('i18n.core.vocabulary.deutschland' | translate)) | uppercase }}
+  </ng-container>
+</div>

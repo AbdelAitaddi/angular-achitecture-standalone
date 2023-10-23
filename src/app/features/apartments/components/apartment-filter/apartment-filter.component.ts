@@ -23,10 +23,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 // models
-import { All_Cities, CityTypes, CityTypesFilter } from '../../models';
+import { CityTypes, CityTypesFilter } from '../../models';
 
 // rxjs
 import { distinctUntilChanged } from 'rxjs/operators';
+import { All_Cities } from '../../config';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-apartment-filter',
@@ -47,27 +49,30 @@ import { distinctUntilChanged } from 'rxjs/operators';
     MatIconModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    TranslateModule,
   ],
   templateUrl: './apartment-filter.component.html',
   styleUrls: ['./apartment-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApartmentFilterComponent implements OnInit {
-  @Input({ required: true }) set selectedCity(city: CityTypesFilter) {
+  @Input() set selectedCity(city: CityTypesFilter) {
     this.cityControl.setValue(city, { emitEvent: false });
   }
-  @Input({ required: true }) set selectedBorough(borough: string | typeof All_Cities) {
+  @Input() set selectedBorough(borough: string | typeof All_Cities) {
     this.boroughControl.setValue(borough, { emitEvent: false });
   }
-  @Input({ required: true }) boroughs: string[] = [];
-  @Input({ required: true }) cities: CityTypes[] = [];
+  @Input() boroughs: string[] = [];
+  @Input() cities: CityTypes[] = [];
   @Output() boroughSelected = new EventEmitter<string | typeof All_Cities>();
   @Output() citySelected = new EventEmitter<CityTypesFilter>();
-
   private destroyRef = inject(DestroyRef);
-  private fb = inject(FormBuilder);
+  private fb = new FormBuilder();
 
-  form = this.fb.group({
+  form = this.fb.group<{
+    city: CityTypesFilter;
+    borough: string | typeof All_Cities;
+  }>({
     city: All_Cities,
     borough: All_Cities,
   });

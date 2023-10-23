@@ -1,34 +1,23 @@
-@use "../../../../styles/mixins/layout";
-@use "../../../../styles/base/breakpoints";
+@use "../../../../styles/base/variables" as theme;
 @use "../../../../styles/base/sizes";
 
-:host {
-  @include layout.flex();
-}
-
-h4 {
-  margin: sizes.$small;
-}
-
-mat-card-title {
-  align-self: center;
-  padding: sizes.$medium-plus;
-}
-
-mat-card-content {
+.content {
   display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: sizes.$small;
-}
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: sizes.$small-plus;
+  padding: sizes.$medium-plus;
 
-mat-card-actions {
-  justify-content: center;
-  padding: sizes.$medium;
-}
+  .card-header {
+    background-color: black;
+    color: white;
+    padding: sizes.$medium;
+  }
 
-@media (max-width: map-get(breakpoints.$grid-breakpoints, "md")) {
-  mat-card-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+  .card-content {
+    p {
+      text-align: justify;
+    }
+    line-height: sizes.$medium-plus;
   }
 }

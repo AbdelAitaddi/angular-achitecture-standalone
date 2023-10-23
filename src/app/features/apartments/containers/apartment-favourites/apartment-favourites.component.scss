@@ -3,6 +3,9 @@
 
 .container {
   width: 100%;
+  height: 100% !important;
+  overflow: auto;
+  padding: sizes.$medium-plus sizes.$large-plus sizes.$medium;
   @include layout.flex(column, initial, initial, initial);
 }
 
@@ -16,6 +19,11 @@ h1 {
 
 .no-results,
 .loading-error {
-  margin: 10% auto;
   font-size: sizes.$medium;
+  font-weight: 600;
+  padding: sizes.$small-plus;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
 }

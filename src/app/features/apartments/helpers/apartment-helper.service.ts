@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { uniq } from 'lodash';
 
 // models
-import { All_Cities, Apartment, CityTypes, CityTypesFilter } from '../models';
+import { Apartment, CityTypesFilter } from '../models';
+
+// config
+import { All_Cities } from '../config';
 
 @Injectable({
   providedIn: 'root',
@@ -16,11 +19,5 @@ export class ApartmentHelperService {
           )
         : apartments;
     return uniq(apartmentsBvCity.map(({ address: { borough } }: Apartment) => borough));
-  }
-
-  filterByCityName(apartments: Apartment[], selectedCity: CityTypes): Apartment[] {
-    return apartments.filter(
-      ({ address: { city } }: Apartment) => city.toLocaleLowerCase().search(selectedCity.toLocaleLowerCase()) > -1
-    );
   }
 }

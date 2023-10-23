@@ -1,5 +1,5 @@
-@use "../base/sizes";
 @use "../base/breakpoints";
+@use "../base/sizes";
 @use "../base/variables" as theme;
 
 .mat-sidenav-container {
@@ -17,7 +17,6 @@
 
 .mat-sidenav-content {
   height: calc(100vh - 64px) !important;
-  padding: sizes.$medium-plus sizes.$large-plus sizes.$medium;
 }
 
 .mat-sidenav {
@@ -34,19 +33,41 @@ mat-sidenav mat-icon {
   width: 100%;
 }
 
-.mat-mdc-text-field-wrapper {
-  background-color: theme.$form-field-background !important;
-}
-
 .mat-form-field {
   width: 100%;
 }
 
-mat-option {
-  margin: sizes.$small 0;
-  text-transform: capitalize;
+.mat-mdc-text-field-wrapper {
+  background-color: theme.$form-field-background !important;
 }
 
+.mat-mdc-option,
+button.mat-mdc-menu-item {
+  margin: sizes.$extra-small 0;
+}
+
+div.mat-mdc-select-panel,
+.mat-mdc-menu-content {
+  padding: 0 !important;
+}
+
+.mat-mdc-menu-content button {
+  justify-content: center !important;
+}
+
+.mat-mdc-menu-panel {
+  width: 126px;
+}
+
+.no-reserved-space {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+
+.mat-mdc-dialog-container {
+  margin-top: sizes.$small-plus;
+}
 @media (max-width: map-get(breakpoints.$grid-breakpoints, "sm")) {
   .mdc-text-field {
     min-width: sizes.$form-field-min-width;

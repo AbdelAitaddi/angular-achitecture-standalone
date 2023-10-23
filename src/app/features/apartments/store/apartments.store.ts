@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
+// services
+import { Store } from '../../../shared/core/store';
+
 // models
-import { All_Cities } from '../models';
 import { ApartmentsState } from './apartments.state';
 
-// services
-import { Store } from '../../../shared/store';
+// config
+import { All_Cities } from '../config';
 
 // Initial state
 const initialState: ApartmentsState = {
@@ -16,6 +18,8 @@ const initialState: ApartmentsState = {
   selectedCity: All_Cities,
   loaded: false,
   loading: false,
+  pageNumber: 0,
+  allDataLoaded: false,
 };
 
 @Injectable({

@@ -1,11 +1,5 @@
-export const Cities = {
-  berlin: 'berlin',
-  hamburg: 'hamburg',
-  munich: 'munich',
-} as const;
+import { All_Cities, Cities } from '../config';
 
 export type CityTypes = (typeof Cities)[keyof typeof Cities];
-
-export const All_Cities = 'all';
 
 export type CityTypesFilter = CityTypes | typeof All_Cities;

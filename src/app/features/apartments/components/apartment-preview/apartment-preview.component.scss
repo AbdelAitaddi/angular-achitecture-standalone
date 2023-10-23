@@ -30,6 +30,10 @@
   .detail + .detail {
     margin-top: sizes.$small;
   }
+
+  .actions {
+    justify-content: space-between;
+  }
 }
 
 img,

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 
 // services
@@ -27,26 +27,25 @@ interface ViewModel {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApartmentDetailComponent implements OnInit {
-  readonly facade = inject(ApartmentFacadeService);
-  readonly location = inject(Location);
-
   viewModel$: Observable<ViewModel>;
 
+  constructor(private facade: ApartmentFacadeService, private location: Location) {}
+
   ngOnInit() {
-    this.viewModel$ = combineLatest([this.facade.selectedApartment$, this.facade.favourites$]).pipe(
-      map(([apartment, favourites]) => ({
+    this.viewModel$ = combineLatest([this.facade.selectedApartment$, this.facade.favouritesIds$]).pipe(
+      map(([apartment, favouriteIds]) => ({
         apartment,
-        selected: favourites.includes(apartment!.id!),
+        selected: !!(apartment?.id && favouriteIds.includes(apartment.id)),
       }))
     );
   }
 
-  onSave(apartmentId: string) {
-    this.facade.addToFavourites(apartmentId);
+  onSave(apartment: Apartment) {
+    this.facade.addToFavourites(apartment);
   }
 
-  onRemove(apartmentId: string) {
-    this.facade.removeFromFavourites(apartmentId);
+  onRemove(apartment: Apartment) {
+    this.facade.removeFromFavourites(apartment);
   }
 
   onBack() {

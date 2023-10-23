@@ -1,15 +1,30 @@
 <mat-toolbar color="primary">
   <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
+    <mat-icon [svgIcon]="icons.menu"></mat-icon>
   </button>
-  <div class="app-name" routerLink="/">ApartmentSearch</div>
+  <div class="app-name" routerLink="/">
+    {{ 'i18n.core.pageTitle.appName' | translate }}
+  </div>
+  <span class="spacer"></span>
+  <app-language-selection
+    [currentLanguage]="(currentLanguage$ | async)!"
+    [languages]="languageCollection"
+    (selectLanguage)="selectLanguage($event)"
+  >
+  </app-language-selection>
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav [mode]="isBiggerScreen" [opened]="opened" [fixedInViewport]="true" [autoFocus]="false">
-    <div class="sidenav-title">
-      <mat-icon [svgIcon]="locationCityIcon"></mat-icon>
-      <h3>ApartmentSearch</h3>
+  <mat-sidenav
+    #sidenav
+    [mode]="(sidenavMode$ | async)!"
+    [opened]="(isOpened$ | async)!"
+    [fixedInViewport]="true"
+    [autoFocus]="false"
+  >
+    <div class="sidenav-title" (click)="sidenav.toggle()">
+      <mat-icon [svgIcon]="icons.locationCity"></mat-icon>
+      <h3>{{ 'i18n.core.pageTitle.appName' | translate }}</h3>
     </div>
 
     <mat-nav-list>
@@ -27,7 +42,7 @@
 
   <mat-sidenav-content>
     <div *ngIf="(loading$ | async) === true" class="loading-indicator">
-      <mat-spinner mode="indeterminate"></mat-spinner>
+      <mat-spinner data-test-id="loading-indicator" mode="indeterminate"></mat-spinner>
     </div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

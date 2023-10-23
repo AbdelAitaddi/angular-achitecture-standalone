@@ -6,26 +6,36 @@ import { MatIconModule } from '@angular/material/icon';
 
 // models
 import { Apartment } from '../../models';
-import { App_Route } from '../../../../core/models';
 
 // pipes
-import { EllipsisPipe, HighlighterPipe } from '../../../../shared/pipes';
-import { Icon_list } from '../../../../core/services/icon.service';
+
+import { App_Route, Icons } from '../../../../core/config';
+import { EllipsisPipe, HighlighterPipe, NgxDatePipe } from '../../../../shared/core/pipes';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-apartment-preview',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatCardModule, MatIconModule, EllipsisPipe, HighlighterPipe],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatCardModule,
+    MatIconModule,
+    EllipsisPipe,
+    HighlighterPipe,
+    NgxDatePipe,
+    TranslateModule,
+  ],
   templateUrl: './apartment-preview.component.html',
   styleUrls: ['./apartment-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApartmentPreviewComponent {
-  @Input({ required: true }) apartment: Apartment;
-  @Input({ required: true }) favourites: string[];
+  @Input() apartment: Apartment;
+  @Input() isFavourite: boolean = false;
 
   apartmentDetailRoute = App_Route.apartment_detail;
-  Icon_list = Icon_list;
+  Icon_list = Icons;
 
   get apartmentAddress() {
     const {
@@ -42,9 +52,5 @@ export class ApartmentPreviewComponent {
       localization: { currency },
     } = this.apartment;
     return `${totalRent} ${currency}`;
-  }
-
-  get isFavourite(): boolean {
-    return this.favourites.includes(this.apartment.id!);
   }
 }

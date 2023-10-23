@@ -8,11 +8,11 @@
         "project": ["tsconfig.json"],
         "createDefaultProgram": true
       },
-      "extends": ["prettier", "plugin:@typescript-eslint/recommended"],
+      "extends": ["prettier", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
       "plugins": ["eslint-plugin-react", "@angular-eslint"],
       "rules": {
         "no-console": "off",
-        "@typescript-eslint/object-curly-spacing" : "off",
+        "@typescript-eslint/object-curly-spacing": "off",
         "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
         "@typescript-eslint/no-shadow": ["error"],
         "@typescript-eslint/consistent-type-definitions": "error",
@@ -58,7 +58,9 @@
         "react/jsx-wrap-multilines": "off",
         "space-before-function-paren": "off",
         "space-in-parens": ["off", "never"],
-        "@typescript-eslint/no-namespace": "off"
+        "@typescript-eslint/no-namespace": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["warn"]
       }
     },
     {
