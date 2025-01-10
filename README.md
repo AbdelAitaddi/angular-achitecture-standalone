@@ -1,4 +1,4 @@
-# NgxApartmentSearchStandalone ⚡
+# Angular Architecture: standalone  ⚡
 
 > Boilerplate project for getting started with Component-First architecture(standalone),  Smart and Dumb Components, own reactive state management. Design was made with Angular material.
 
